@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My RoomDatabase</string>
+    <string name="menu_name">Nama Menu</string>
+    <string name="menu_desc">Deskripsi Menu</string>
+    <string name="menu_price">Harga Menu</string>
+    <string name="price">Rp. %1$s</string>
+    <string name="tambah">Tambah Menu Baru</string>
+    <string name="edit">Edit Menu</string>
+    <string name="empty">Tidak boleh kosong!</string>
+</resources>
