@@ -1,10 +1,8 @@
-package com.hnfnfl.finalproject.repository
+package com.hnfnfl.finalproject.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.hnfnfl.finalproject.ui.AddMenuViewModel
-import com.hnfnfl.finalproject.ui.MainViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory private constructor(private val application: Application) : ViewModelProvider.NewInstanceFactory() {
@@ -12,8 +10,7 @@ class ViewModelFactory private constructor(private val application: Application)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             MainViewModel(application) as T
-        } else if (modelClass.isAssignableFrom(AddMenuViewModel::class.java)) {
-            AddMenuViewModel(application) as T
+
         } else {
             throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }

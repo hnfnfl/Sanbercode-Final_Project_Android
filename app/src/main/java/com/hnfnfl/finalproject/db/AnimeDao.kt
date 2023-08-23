@@ -6,19 +6,15 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 
 @Dao
-interface MenuDao {
-    @Query("SELECT * FROM menu ORDER BY name ASC")
-    fun getAllMenu(): LiveData<List<Menu>>
+interface AnimeDao {
+    @Query("SELECT * FROM anime_data ORDER BY title ASC")
+    fun getFavoriteAnime(): LiveData<List<AnimeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertMenu(menu: Menu)
-
-    @Update
-    fun updateMenu(menu: Menu)
+    fun insertFavoriteAnime(anime: AnimeEntity)
 
     @Delete
-    fun deleteMenu(menu: Menu)
+    fun deleteFavoriteAnime(anime: AnimeEntity)
 }

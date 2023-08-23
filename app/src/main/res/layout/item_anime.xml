@@ -10,47 +10,57 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="6dp">
+        android:padding="8dp">
 
-        <TextView
-            android:id="@+id/tv_menu_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Menu Name"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
+        <ImageView
+            android:id="@+id/iv_anime_cover_art"
+            android:layout_width="100dp"
+            android:layout_height="130dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_menu_desc"
+            android:id="@+id/tv_anime_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:hint="Menu Description"
+            android:layout_marginStart="8dp"
+            android:hint="Anime Title"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_anime_cover_art"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_anime_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:hint="Anime Status"
             android:maxLines="2"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_menu_name" />
+            app:layout_constraintStart_toEndOf="@+id/iv_anime_cover_art"
+            app:layout_constraintTop_toBottomOf="@+id/tv_anime_title" />
 
         <TextView
-            android:id="@+id/tv_menu_price"
+            android:id="@+id/tv_anime_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="6dp"
-            android:hint="Menu Price"
+            android:hint="Anime Rating"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_menu_desc" />
+            app:layout_constraintStart_toEndOf="@+id/iv_anime_cover_art"
+            app:layout_constraintTop_toBottomOf="@+id/tv_anime_status" />
 
         <ImageButton
-            android:id="@+id/btn_delete_menu"
+            android:id="@+id/btn_add_fav"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/round_delete_24"
+            android:background="@drawable/round_favorite_border_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
