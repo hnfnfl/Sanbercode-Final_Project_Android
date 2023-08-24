@@ -36,6 +36,7 @@ class AnimeListActivity : AppCompatActivity() {
                 setHasFixedSize(true)
                 adapter = this@AnimeListActivity.adapter
             }
+
         }
     }
 
@@ -45,7 +46,7 @@ class AnimeListActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun getIntent(activity: AppCompatActivity): Intent {
+        fun newIntent(activity: AppCompatActivity): Intent {
             return Intent(activity, AnimeListActivity::class.java)
         }
     }

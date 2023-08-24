@@ -11,7 +11,7 @@ import com.hnfnfl.finalproject.repository.AnimeCallback
 import com.hnfnfl.finalproject.viewmodel.MainViewModel
 import es.dmoral.toasty.Toasty
 
-class TopAnimeAdapter() : RecyclerView.Adapter<TopAnimeAdapter.ItemViewHolder>() {
+class UpcomingAnimeAdapter() : RecyclerView.Adapter<UpcomingAnimeAdapter.ItemViewHolder>() {
 
     private val listData = ArrayList<AnimeEntity>()
 
@@ -20,7 +20,7 @@ class TopAnimeAdapter() : RecyclerView.Adapter<TopAnimeAdapter.ItemViewHolder>()
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         listData.clear()
         listData.addAll(list)
-        diffResult.dispatchUpdatesTo(this@TopAnimeAdapter)
+        diffResult.dispatchUpdatesTo(this@UpcomingAnimeAdapter)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
