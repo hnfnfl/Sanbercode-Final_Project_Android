@@ -5,13 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.hnfnfl.finalproject.databinding.ItemAnimeBinding
 import com.hnfnfl.finalproject.db.AnimeEntity
 import com.hnfnfl.finalproject.repository.AnimeCallback
-import com.hnfnfl.finalproject.viewmodel.MainViewModel
+import com.hnfnfl.finalproject.viewmodel.AnimeListViewModel
 
-class MenuAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<MenuAdapter.ItemViewHolder>() {
+class AnimeListAdapter(val viewModel: AnimeListViewModel) : RecyclerView.Adapter<AnimeListAdapter.ItemViewHolder>() {
 
     private val listItem = ArrayList<AnimeEntity>()
 
@@ -20,7 +19,7 @@ class MenuAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<MenuAdapt
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         listItem.clear()
         listItem.addAll(list)
-        diffResult.dispatchUpdatesTo(this@MenuAdapter)
+        diffResult.dispatchUpdatesTo(this@AnimeListAdapter)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {

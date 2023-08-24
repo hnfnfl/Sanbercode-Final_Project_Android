@@ -11,8 +11,13 @@ interface ApiService {
         @Query("limit") limit: Int? = null,
     ): Call<AnimeResponse>
 
-    @GET("/top/anime")
+    @GET("top/anime")
     fun getTopAnime(
+        @Query("limit") limit: Int = 5,
+    ): Call<AnimeResponse>
+
+    @GET("seasons/upcoming")
+    fun getUpcomingAnime(
         @Query("limit") limit: Int = 5,
     ): Call<AnimeResponse>
 }

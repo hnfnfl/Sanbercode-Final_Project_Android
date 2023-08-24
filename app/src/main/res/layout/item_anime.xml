@@ -28,6 +28,7 @@
             android:hint="Anime Title"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:maxLines="2"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/iv_anime_cover_art"
             app:layout_constraintTop_toTopOf="parent" />
