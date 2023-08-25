@@ -66,5 +66,5 @@ dependencies {
 
     // Toasty
     implementation("com.github.GrenderG:Toasty:1.5.0")
-    
+
 }

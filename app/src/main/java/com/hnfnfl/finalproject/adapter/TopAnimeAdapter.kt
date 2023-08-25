@@ -1,4 +1,4 @@
-package com.hnfnfl.finalproject.ui
+package com.hnfnfl.finalproject.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.hnfnfl.finalproject.databinding.ItemAnimeTopBinding
 import com.hnfnfl.finalproject.db.AnimeEntity
 import com.hnfnfl.finalproject.repository.AnimeCallback
-import com.hnfnfl.finalproject.viewmodel.MainViewModel
 import es.dmoral.toasty.Toasty
 
 class TopAnimeAdapter() : RecyclerView.Adapter<TopAnimeAdapter.ItemViewHolder>() {

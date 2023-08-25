@@ -7,4 +7,11 @@
     <string name="tambah">Tambah Menu Baru</string>
     <string name="edit">Edit Menu</string>
     <string name="empty">Tidak boleh kosong!</string>
+
+    <string-array name="random_anime">
+        <item>Naruto</item>
+        <item>One Piece</item>
+        <item>Dragon Ball</item>
+        <item>One Punch Man</item>
+    </string-array>
 </resources>

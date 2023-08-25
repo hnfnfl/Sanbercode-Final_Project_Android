@@ -2,10 +2,11 @@ package com.hnfnfl.finalproject.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hnfnfl.finalproject.R
+import com.hnfnfl.finalproject.adapter.TopAnimeAdapter
+import com.hnfnfl.finalproject.adapter.UpcomingAnimeAdapter
 import com.hnfnfl.finalproject.databinding.ActivityMainBinding
 import com.hnfnfl.finalproject.viewmodel.MainViewModel
 import com.hnfnfl.finalproject.viewmodel.ViewModelFactory
@@ -14,7 +15,6 @@ import es.dmoral.toasty.Toasty
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var toolbar: Toolbar
     private lateinit var topAnimeAdapter: TopAnimeAdapter
     private lateinit var upcomingAnimeAdapter: UpcomingAnimeAdapter
 
@@ -23,19 +23,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(false)
-            setDisplayShowHomeEnabled(true)
-        }
         topAnimeAdapter = TopAnimeAdapter()
         upcomingAnimeAdapter = UpcomingAnimeAdapter()
 
         val viewModel = obtainViewModel(this@MainActivity)
         viewModel.apply {
-            getTopAnime()
-            getUpcomingAnime()
             topAnimeLiveData.observe(this@MainActivity) { anime ->
                 if (anime != null) {
                     topAnimeAdapter.setList(anime)
@@ -49,6 +41,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.apply {
+            setSupportActionBar(toolbar)
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(false)
+                setDisplayShowHomeEnabled(true)
+            }
+
             rvTopAnime.apply {
                 layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
                 setHasFixedSize(true)

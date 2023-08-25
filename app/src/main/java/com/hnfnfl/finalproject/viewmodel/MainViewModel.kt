@@ -13,10 +13,11 @@ import retrofit2.Response
 
 class MainViewModel(application: Application) : ViewModel() {
 
-    val topAnimeLiveData: MutableLiveData<List<AnimeEntity>> = MutableLiveData()
-    val upcomingAnimeLiveData: MutableLiveData<List<AnimeEntity>> = MutableLiveData()
+    val topAnimeLiveData: MutableLiveData<List<AnimeEntity>> = getTopAnime()
+    val upcomingAnimeLiveData: MutableLiveData<List<AnimeEntity>> = getUpcomingAnime()
 
-    fun getTopAnime() {
+    private fun getTopAnime(): MutableLiveData<List<AnimeEntity>> {
+        val tempLiveData = MutableLiveData<List<AnimeEntity>>()
         RetrofitClient.apiService.getTopAnime().enqueue(object : Callback<AnimeResponse> {
             override fun onResponse(call: Call<AnimeResponse>, response: Response<AnimeResponse>) {
                 if (response.isSuccessful) {
@@ -37,20 +38,25 @@ class MainViewModel(application: Application) : ViewModel() {
                             )
                             animeList.add(animeEntity)
                         }
-                        topAnimeLiveData.postValue(animeList)
+                        tempLiveData.postValue(animeList)
                     }
                 } else {
                     Log.e("MainViewModel", "onResponse Error: ${response.message()}")
+                    return
                 }
             }
 
             override fun onFailure(call: Call<AnimeResponse>, t: Throwable) {
                 Log.e("MainViewModel", "onFailure: ${t.message}")
+                return
             }
         })
+
+        return tempLiveData
     }
 
-    fun getUpcomingAnime() {
+    private fun getUpcomingAnime(): MutableLiveData<List<AnimeEntity>> {
+        val tempLiveData = MutableLiveData<List<AnimeEntity>>()
         RetrofitClient.apiService.getUpcomingAnime().enqueue(object : Callback<AnimeResponse> {
             override fun onResponse(call: Call<AnimeResponse>, response: Response<AnimeResponse>) {
                 if (response.isSuccessful) {
@@ -71,16 +77,20 @@ class MainViewModel(application: Application) : ViewModel() {
                             )
                             animeList.add(animeEntity)
                         }
-                        upcomingAnimeLiveData.postValue(animeList)
+                        tempLiveData.postValue(animeList)
                     }
                 } else {
                     Log.e("MainViewModel", "onResponse Error: ${response.message()}")
+                    return
                 }
             }
 
             override fun onFailure(call: Call<AnimeResponse>, t: Throwable) {
                 Log.e("MainViewModel", "onFailure: ${t.message}")
+                return
             }
         })
+
+        return tempLiveData
     }
 }

@@ -1,53 +1,55 @@
-package com.hnfnfl.finalproject.ui
+package com.hnfnfl.finalproject.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hnfnfl.finalproject.databinding.ItemAnimeTopBinding
+import com.hnfnfl.finalproject.databinding.ItemAnimeBinding
 import com.hnfnfl.finalproject.db.AnimeEntity
 import com.hnfnfl.finalproject.repository.AnimeCallback
-import com.hnfnfl.finalproject.viewmodel.MainViewModel
-import es.dmoral.toasty.Toasty
+import com.hnfnfl.finalproject.viewmodel.AnimeListViewModel
 
-class UpcomingAnimeAdapter() : RecyclerView.Adapter<UpcomingAnimeAdapter.ItemViewHolder>() {
+class AnimeListAdapter(val viewModel: AnimeListViewModel) : RecyclerView.Adapter<AnimeListAdapter.ItemViewHolder>() {
 
-    private val listData = ArrayList<AnimeEntity>()
+    private val listItem = ArrayList<AnimeEntity>()
 
     fun setList(list: List<AnimeEntity>) {
-        val diffCallback = AnimeCallback(listData, list)
+        val diffCallback = AnimeCallback(listItem, list)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
-        listData.clear()
-        listData.addAll(list)
-        diffResult.dispatchUpdatesTo(this@UpcomingAnimeAdapter)
+        listItem.clear()
+        listItem.addAll(list)
+        diffResult.dispatchUpdatesTo(this@AnimeListAdapter)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = ItemAnimeTopBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemAnimeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(listData[position])
+        holder.bind(listItem[position])
     }
 
-    override fun getItemCount(): Int = listData.size
+    override fun getItemCount(): Int = listItem.size
 
-    inner class ItemViewHolder(private val binding: ItemAnimeTopBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ItemViewHolder(private val binding: ItemAnimeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AnimeEntity) {
             with(binding) {
                 tvAnimeTitle.text = item.title
+                tvAnimeStatus.text = item.status
+                tvAnimeRating.text = item.rating
                 Glide.with(itemView.context)
                     .load(item.imageUrl)
                     .centerCrop()
                     .into(ivAnimeCoverArt)
-
                 itemView.setOnClickListener {
 //                    val intent = Intent(itemView.context, AddMenuActivity::class.java)
 //                    intent.putExtra(AddMenuActivity.EXTRA_MENU, item)
 //                    itemView.context.startActivity(intent)
-                    Toasty.info(itemView.context, "Anime Title: ${item.title}", Toasty.LENGTH_SHORT).show()
+                }
+                btnAddFav.setOnClickListener {
+//                    viewModel.addFavoriteAnime(item)
                 }
             }
         }
