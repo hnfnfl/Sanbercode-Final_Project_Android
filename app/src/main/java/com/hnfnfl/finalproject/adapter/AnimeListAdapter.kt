@@ -9,6 +9,7 @@ import com.hnfnfl.finalproject.databinding.ItemAnimeBinding
 import com.hnfnfl.finalproject.db.AnimeEntity
 import com.hnfnfl.finalproject.repository.AnimeCallback
 import com.hnfnfl.finalproject.viewmodel.AnimeListViewModel
+import es.dmoral.toasty.Toasty
 
 class AnimeListAdapter(val viewModel: AnimeListViewModel) : RecyclerView.Adapter<AnimeListAdapter.ItemViewHolder>() {
 
@@ -49,7 +50,8 @@ class AnimeListAdapter(val viewModel: AnimeListViewModel) : RecyclerView.Adapter
 //                    itemView.context.startActivity(intent)
                 }
                 btnAddFav.setOnClickListener {
-//                    viewModel.addFavoriteAnime(item)
+                    viewModel.addFavoriteAnime(item)
+                    Toasty.success(itemView.context, "Anime ${item.title} berhasil ditambahkan ke favorite", Toasty.LENGTH_SHORT).show()
                 }
             }
         }

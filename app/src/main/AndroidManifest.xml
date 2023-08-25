@@ -15,6 +15,9 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".ui.FavoriteAnimeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.AnimeListActivity"
             android:exported="false" />
         <activity

@@ -2,6 +2,7 @@ package com.hnfnfl.finalproject.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,9 +24,10 @@ class AnimeListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel = obtainViewModel(this@AnimeListActivity)
+        val animeList = resources.getStringArray(R.array.random_anime)
+        val randomAnime = animeList.random()
+
         viewModel.apply {
-            val animeList = resources.getStringArray(R.array.random_anime)
-            val randomAnime = animeList.random()
             getAnime(randomAnime)
             liveData.observe(this@AnimeListActivity) { anime ->
                 if (anime != null) {
@@ -40,15 +42,23 @@ class AnimeListActivity : AppCompatActivity() {
         binding.apply {
             setSupportActionBar(toolbar)
             supportActionBar?.apply {
-                setDisplayHomeAsUpEnabled(false)
+                setDisplayHomeAsUpEnabled(true)
                 setDisplayShowHomeEnabled(true)
                 title = "Anime List"
             }
 
             svAnime.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    if (query != null) {
+                    if (!query.isNullOrEmpty()) {
                         viewModel.getAnime(query)
+                    } else {
+                        viewModel.getAnime(randomAnime)
+                    }
+                    empty.visibility = if (adapter.itemCount == 0) {
+                        Toasty.info(this@AnimeListActivity, "Anime $query not found", Toasty.LENGTH_SHORT).show()
+                        View.VISIBLE
+                    } else {
+                        View.GONE
                     }
                     return true
                 }
@@ -65,9 +75,14 @@ class AnimeListActivity : AppCompatActivity() {
             }
 
             btnFavoriteAnime.setOnClickListener {
-                Toasty.info(this@AnimeListActivity, "Coming soon").show()
+                startActivity(Intent(this@AnimeListActivity, FavoriteAnimeActivity::class.java))
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): AnimeListViewModel {

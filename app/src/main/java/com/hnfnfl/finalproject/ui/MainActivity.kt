@@ -1,16 +1,15 @@
 package com.hnfnfl.finalproject.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hnfnfl.finalproject.R
 import com.hnfnfl.finalproject.adapter.TopAnimeAdapter
 import com.hnfnfl.finalproject.adapter.UpcomingAnimeAdapter
 import com.hnfnfl.finalproject.databinding.ActivityMainBinding
 import com.hnfnfl.finalproject.viewmodel.MainViewModel
 import com.hnfnfl.finalproject.viewmodel.ViewModelFactory
-import es.dmoral.toasty.Toasty
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,12 +27,12 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel = obtainViewModel(this@MainActivity)
         viewModel.apply {
-            topAnimeLiveData.observe(this@MainActivity) { anime ->
+            getTopAnime().observe(this@MainActivity) { anime ->
                 if (anime != null) {
                     topAnimeAdapter.setList(anime)
                 }
             }
-            upcomingAnimeLiveData.observe(this@MainActivity) { anime ->
+            getUpcomingAnime().observe(this@MainActivity) { anime ->
                 if (anime != null) {
                     upcomingAnimeAdapter.setList(anime)
                 }
@@ -68,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             btnFavoriteAnime.setOnClickListener {
-                Toasty.info(this@MainActivity, "Coming soon").show()
+                startActivity(Intent(this@MainActivity, FavoriteAnimeActivity::class.java))
             }
         }
     }
