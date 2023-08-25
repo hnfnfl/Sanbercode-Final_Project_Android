@@ -1,13 +1,15 @@
 package com.hnfnfl.finalproject.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hnfnfl.finalproject.databinding.ItemAnimeFavoriteBinding
+import com.hnfnfl.finalproject.databinding.ItemAnimeBinding
 import com.hnfnfl.finalproject.db.AnimeEntity
 import com.hnfnfl.finalproject.repository.AnimeCallback
 import com.hnfnfl.finalproject.viewmodel.FavoriteAnimeViewModel
@@ -28,7 +30,7 @@ class FavoriteAnimeAdapter(val viewModel: FavoriteAnimeViewModel) : RecyclerView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = ItemAnimeFavoriteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemAnimeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
     }
 
@@ -38,9 +40,15 @@ class FavoriteAnimeAdapter(val viewModel: FavoriteAnimeViewModel) : RecyclerView
 
     override fun getItemCount(): Int = listData.size
 
-    inner class ItemViewHolder(private val binding: ItemAnimeFavoriteBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ItemViewHolder(private val binding: ItemAnimeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AnimeEntity) {
             with(binding) {
+                btnAddFav.visibility = View.GONE
+                val layoutParams = llAnimeRating.layoutParams as ConstraintLayout.LayoutParams
+                layoutParams.endToStart = ConstraintLayout.LayoutParams.UNSET
+                layoutParams.endToStart = btnDeleteFav.id
+                llAnimeRating.layoutParams = layoutParams
+
                 tvAnimeTitle.text = item.title
                 tvAnimeStatus.text = item.status
                 tvAnimeRating.text = item.rating

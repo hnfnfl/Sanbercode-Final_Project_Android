@@ -13,10 +13,7 @@ import retrofit2.Response
 
 class MainViewModel(application: Application) : ViewModel() {
 
-    val topAnimeLiveData: MutableLiveData<List<AnimeEntity>> = getTopAnime()
-    val upcomingAnimeLiveData: MutableLiveData<List<AnimeEntity>> = getUpcomingAnime()
-
-    private fun getTopAnime(): MutableLiveData<List<AnimeEntity>> {
+    fun getTopAnime(): MutableLiveData<List<AnimeEntity>> {
         val tempLiveData = MutableLiveData<List<AnimeEntity>>()
         RetrofitClient.apiService.getTopAnime().enqueue(object : Callback<AnimeResponse> {
             override fun onResponse(call: Call<AnimeResponse>, response: Response<AnimeResponse>) {
@@ -55,7 +52,7 @@ class MainViewModel(application: Application) : ViewModel() {
         return tempLiveData
     }
 
-    private fun getUpcomingAnime(): MutableLiveData<List<AnimeEntity>> {
+    fun getUpcomingAnime(): MutableLiveData<List<AnimeEntity>> {
         val tempLiveData = MutableLiveData<List<AnimeEntity>>()
         RetrofitClient.apiService.getUpcomingAnime().enqueue(object : Callback<AnimeResponse> {
             override fun onResponse(call: Call<AnimeResponse>, response: Response<AnimeResponse>) {

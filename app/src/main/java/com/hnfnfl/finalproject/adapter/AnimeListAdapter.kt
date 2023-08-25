@@ -2,6 +2,7 @@ package com.hnfnfl.finalproject.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -37,13 +38,15 @@ class AnimeListAdapter(val viewModel: AnimeListViewModel) : RecyclerView.Adapter
     inner class ItemViewHolder(private val binding: ItemAnimeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AnimeEntity) {
             with(binding) {
+                btnDeleteFav.visibility = ViewGroup.GONE
+                val layoutParams = llAnimeRating.layoutParams as ConstraintLayout.LayoutParams
+                layoutParams.endToStart = ConstraintLayout.LayoutParams.UNSET
+                layoutParams.endToStart = btnAddFav.id
+
                 tvAnimeTitle.text = item.title
                 tvAnimeStatus.text = item.status
                 tvAnimeRating.text = item.rating
-                Glide.with(itemView.context)
-                    .load(item.imageUrl)
-                    .centerCrop()
-                    .into(ivAnimeCoverArt)
+                Glide.with(itemView.context).load(item.imageUrl).centerCrop().into(ivAnimeCoverArt)
                 itemView.setOnClickListener {
 //                    val intent = Intent(itemView.context, AddMenuActivity::class.java)
 //                    intent.putExtra(AddMenuActivity.EXTRA_MENU, item)

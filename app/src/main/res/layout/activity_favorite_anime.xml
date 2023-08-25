@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mcv_holder"
-        tools:listitem="@layout/item_anime_favorite" />
+        tools:listitem="@layout/item_anime" />
 
     <ImageView
         android:id="@+id/empty"
