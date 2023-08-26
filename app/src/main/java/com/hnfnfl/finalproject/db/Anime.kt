@@ -17,5 +17,6 @@ data class AnimeEntity(
     @ColumnInfo(name = "status") var status: String? = null,
     @ColumnInfo(name = "duration") var duration: String? = null,
     @ColumnInfo(name = "rating") var rating: String? = null,
+    @ColumnInfo(name = "score") var score: Double? = null,
     @ColumnInfo(name = "synopsis") var synopsis: String? = null,
 ) : Parcelable

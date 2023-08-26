@@ -36,6 +36,7 @@ class AnimeListViewModel(application: Application) : ViewModel() {
                                 animeData.status,
                                 animeData.duration,
                                 animeData.rating,
+                                animeData.score,
                                 animeData.synopsis,
                             )
                             animeList.add(animeEntity)

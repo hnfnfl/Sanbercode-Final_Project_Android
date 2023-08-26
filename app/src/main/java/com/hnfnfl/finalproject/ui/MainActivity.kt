@@ -22,9 +22,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        topAnimeAdapter = TopAnimeAdapter()
-        upcomingAnimeAdapter = UpcomingAnimeAdapter()
-
         val viewModel = obtainViewModel(this@MainActivity)
         viewModel.apply {
             getTopAnime().observe(this@MainActivity) { anime ->
@@ -38,6 +35,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        topAnimeAdapter = TopAnimeAdapter(viewModel)
+        upcomingAnimeAdapter = UpcomingAnimeAdapter(viewModel)
 
         binding.apply {
             setSupportActionBar(toolbar)

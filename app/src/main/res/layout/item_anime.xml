@@ -13,20 +13,20 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_anime_cover_art"
             android:layout_width="100dp"
             android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="8dp" />
 
         <TextView
             android:id="@+id/tv_anime_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:hint="Anime Title"
             android:maxLines="2"
             android:textColor="?attr/colorOnSecondaryContainer"
             android:textSize="18sp"
@@ -41,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="6dp"
-            android:hint="Anime Status"
             android:maxLines="2"
             android:textColor="?attr/colorOnSecondaryContainer"
             android:textSize="16sp"
@@ -65,7 +64,6 @@
                 android:id="@+id/tv_anime_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Anime Rating"
                 android:maxLines="2"
                 android:textColor="?attr/colorOnSecondaryContainer"
                 android:textSize="16sp" />
@@ -78,8 +76,9 @@
             android:layout_height="48dp"
             android:background="@drawable/round_favorite_border_24"
             android:backgroundTint="?attr/colorOnSecondaryContainer"
-            android:contentDescription="Add to Favorite"
+            android:contentDescription="@string/add_to_favorite"
             android:foreground="?android:attr/selectableItemBackground"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -90,8 +89,9 @@
             android:layout_height="48dp"
             android:background="@drawable/round_delete_24"
             android:backgroundTint="?attr/colorOnSecondaryContainer"
-            android:contentDescription="Add to Favorite"
+            android:contentDescription="@string/delete_from_favorite"
             android:foreground="?android:attr/selectableItemBackground"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

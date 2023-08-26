@@ -13,6 +13,7 @@ import com.hnfnfl.finalproject.databinding.ItemAnimeBinding
 import com.hnfnfl.finalproject.db.AnimeEntity
 import com.hnfnfl.finalproject.repository.AnimeCallback
 import com.hnfnfl.finalproject.viewmodel.FavoriteAnimeViewModel
+import com.hnfnfl.finalproject.viewmodel.showDetailAnime
 import es.dmoral.toasty.Toasty
 
 class FavoriteAnimeAdapter(val viewModel: FavoriteAnimeViewModel) : RecyclerView.Adapter<FavoriteAnimeAdapter.ItemViewHolder>(), Filterable {
@@ -43,6 +44,7 @@ class FavoriteAnimeAdapter(val viewModel: FavoriteAnimeViewModel) : RecyclerView
     inner class ItemViewHolder(private val binding: ItemAnimeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AnimeEntity) {
             with(binding) {
+                btnDeleteFav.visibility = View.VISIBLE
                 btnAddFav.visibility = View.GONE
                 val layoutParams = llAnimeRating.layoutParams as ConstraintLayout.LayoutParams
                 layoutParams.endToStart = ConstraintLayout.LayoutParams.UNSET
@@ -55,10 +57,7 @@ class FavoriteAnimeAdapter(val viewModel: FavoriteAnimeViewModel) : RecyclerView
                 Glide.with(itemView.context).load(item.imageUrl).centerCrop().into(ivAnimeCoverArt)
 
                 itemView.setOnClickListener {
-//                    val intent = Intent(itemView.context, AddMenuActivity::class.java)
-//                    intent.putExtra(AddMenuActivity.EXTRA_MENU, item)
-//                    itemView.context.startActivity(intent)
-                    Toasty.info(itemView.context, "Anime Title: ${item.title}", Toasty.LENGTH_SHORT).show()
+                    showDetailAnime(itemView.context, null, item, false)
                 }
 
                 btnDeleteFav.setOnClickListener {

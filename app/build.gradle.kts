@@ -67,4 +67,6 @@ dependencies {
     // Toasty
     implementation("com.github.GrenderG:Toasty:1.5.0")
 
+    //Rounded image
+    implementation("com.makeramen:roundedimageview:2.3.0")
 }

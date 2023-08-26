@@ -8,9 +8,10 @@ import com.bumptech.glide.Glide
 import com.hnfnfl.finalproject.databinding.ItemAnimeTopBinding
 import com.hnfnfl.finalproject.db.AnimeEntity
 import com.hnfnfl.finalproject.repository.AnimeCallback
-import es.dmoral.toasty.Toasty
+import com.hnfnfl.finalproject.viewmodel.MainViewModel
+import com.hnfnfl.finalproject.viewmodel.showDetailAnime
 
-class TopAnimeAdapter() : RecyclerView.Adapter<TopAnimeAdapter.ItemViewHolder>() {
+class TopAnimeAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<TopAnimeAdapter.ItemViewHolder>() {
 
     private val listData = ArrayList<AnimeEntity>()
 
@@ -43,10 +44,7 @@ class TopAnimeAdapter() : RecyclerView.Adapter<TopAnimeAdapter.ItemViewHolder>()
                     .into(ivAnimeCoverArt)
 
                 itemView.setOnClickListener {
-//                    val intent = Intent(itemView.context, AddMenuActivity::class.java)
-//                    intent.putExtra(AddMenuActivity.EXTRA_MENU, item)
-//                    itemView.context.startActivity(intent)
-                    Toasty.info(itemView.context, "Anime Title: ${item.title}", Toasty.LENGTH_SHORT).show()
+                    showDetailAnime(itemView.context, viewModel, item, true)
                 }
             }
         }

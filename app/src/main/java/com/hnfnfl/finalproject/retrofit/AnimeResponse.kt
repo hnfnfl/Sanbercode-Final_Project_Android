@@ -26,6 +26,7 @@ data class AnimeResponse(@SerializedName("pagination") val pagination: Paginatio
         @SerializedName("status") val status: String,
         @SerializedName("duration") val duration: String,
         @SerializedName("rating") val rating: String?,
+        @SerializedName("score") val score: Double?,
         @SerializedName("synopsis") val synopsis: String,
         @SerializedName("producers") val producers: List<Producer>,
         @SerializedName("genres") val genres: List<Genre>,

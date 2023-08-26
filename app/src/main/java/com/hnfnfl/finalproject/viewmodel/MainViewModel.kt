@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hnfnfl.finalproject.db.AnimeEntity
+import com.hnfnfl.finalproject.repository.AnimeRepository
 import com.hnfnfl.finalproject.retrofit.AnimeResponse
 import com.hnfnfl.finalproject.retrofit.RetrofitClient
 import retrofit2.Call
@@ -12,6 +13,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel(application: Application) : ViewModel() {
+
+    private val repository: AnimeRepository = AnimeRepository(application)
+    fun addFavoriteAnime(anime: AnimeEntity) = repository.insertFavoriteAnime(anime)
 
     fun getTopAnime(): MutableLiveData<List<AnimeEntity>> {
         val tempLiveData = MutableLiveData<List<AnimeEntity>>()
@@ -31,6 +35,7 @@ class MainViewModel(application: Application) : ViewModel() {
                                 animeData.status,
                                 animeData.duration,
                                 animeData.rating,
+                                animeData.score,
                                 animeData.synopsis,
                             )
                             animeList.add(animeEntity)
@@ -70,6 +75,7 @@ class MainViewModel(application: Application) : ViewModel() {
                                 animeData.status,
                                 animeData.duration,
                                 animeData.rating,
+                                animeData.score,
                                 animeData.synopsis,
                             )
                             animeList.add(animeEntity)

@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="250dp"
-    android:layout_height="300dp"
+    android:layout_height="290dp"
     android:layout_margin="12dp"
     android:backgroundTint="?attr/colorTertiaryContainer"
     android:foreground="?android:attr/selectableItemBackground"
@@ -13,13 +13,14 @@
         android:layout_height="match_parent"
         android:padding="8dp">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_anime_cover_art"
             android:layout_width="140dp"
             android:layout_height="220dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="8dp" />
 
         <TextView
             android:id="@+id/tv_anime_title"
@@ -28,7 +29,6 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:gravity="center"
-            android:hint="Anime Title"
             android:maxLines="2"
             android:textColor="?attr/colorOnTertiaryContainer"
             android:textSize="18sp"
