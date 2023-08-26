@@ -20,3 +20,9 @@ data class AnimeEntity(
     @ColumnInfo(name = "score") var score: Double? = null,
     @ColumnInfo(name = "synopsis") var synopsis: String? = null,
 ) : Parcelable
+
+data class PaginationData(
+    val lastVisiblePage: Int,
+    val hasNextPage: Boolean,
+    val currentPage: Int,
+)

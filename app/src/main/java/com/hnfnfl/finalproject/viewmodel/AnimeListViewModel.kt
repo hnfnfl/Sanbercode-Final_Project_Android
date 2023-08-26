@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hnfnfl.finalproject.db.AnimeEntity
+import com.hnfnfl.finalproject.db.PaginationData
 import com.hnfnfl.finalproject.repository.AnimeRepository
 import com.hnfnfl.finalproject.retrofit.AnimeResponse
 import com.hnfnfl.finalproject.retrofit.RetrofitClient
@@ -18,12 +19,22 @@ class AnimeListViewModel(application: Application) : ViewModel() {
     fun addFavoriteAnime(anime: AnimeEntity) = repository.insertFavoriteAnime(anime)
 
     val liveData: MutableLiveData<List<AnimeEntity>> = MutableLiveData()
+    val paginationData: MutableLiveData<PaginationData> = MutableLiveData()
 
-    fun getAnime(query: String) {
-        RetrofitClient.apiService.getAnime(query).enqueue(object : Callback<AnimeResponse> {
+    fun getAnime(query: String, page: Int = 1) {
+        RetrofitClient.apiService.getAnime(query, null, page).enqueue(object : Callback<AnimeResponse> {
             override fun onResponse(call: Call<AnimeResponse>, response: Response<AnimeResponse>) {
                 if (response.isSuccessful) {
                     val animeResponse = response.body()
+                    val pagination = animeResponse?.pagination
+                    pagination?.let {
+                        val data = PaginationData(
+                            it.lastVisiblePage,
+                            it.hasNextPage,
+                            it.currentPage,
+                        )
+                        paginationData.postValue(data)
+                    }
                     animeResponse?.let {
                         val animeList = mutableListOf<AnimeEntity>()
                         for (animeData in it.data) {

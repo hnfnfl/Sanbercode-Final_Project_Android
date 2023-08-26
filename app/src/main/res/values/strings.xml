@@ -1,18 +1,15 @@
 <resources>
     <string name="app_name">Anime Fav App</string>
-    <string name="menu_name">Nama Menu</string>
-    <string name="menu_desc">Deskripsi Menu</string>
-    <string name="menu_price">Harga Menu</string>
-    <string name="price">Rp. %1$s</string>
-    <string name="tambah">Tambah Menu Baru</string>
-    <string name="edit">Edit Menu</string>
-    <string name="empty">Tidak boleh kosong!</string>
+    <string name="empty">Gambar kosong</string>
     <string name="tv_anime_rating_score">Rating: %1$s Score: %2$.1f</string>
     <string name="tv_anime_status">Status: %1$s</string>
     <string name="tv_anime_episodes">Eps: %1$d</string>
     <string name="tv_anime_duration">Duration: %1$s</string>
     <string name="add_to_favorite">Add to Favorite</string>
     <string name="delete_from_favorite">Delete from Favorite</string>
+    <string name="favorite_page">Daftar anime favorite</string>
+    <string name="tv_next_page">Next page</string>
+    <string name="tv_previous_page">Previous page</string>
 
     <string-array name="random_anime">
         <item>Naruto</item>

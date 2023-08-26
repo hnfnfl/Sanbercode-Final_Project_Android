@@ -18,6 +18,8 @@ class AnimeListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAnimeListBinding
     private lateinit var adapter: AnimeListAdapter
 
+    private var querySearch: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAnimeListBinding.inflate(layoutInflater)
@@ -37,6 +39,32 @@ class AnimeListActivity : AppCompatActivity() {
                 }
             }
             adapter = AnimeListAdapter(this)
+
+            paginationData.observe(this@AnimeListActivity) { page ->
+                if (page != null) {
+                    binding.apply {
+                        val animeName = querySearch.ifEmpty { randomAnime }
+                        if (page.hasNextPage) {
+                            tvNextPage.visibility = View.VISIBLE
+                        } else {
+                            tvNextPage.visibility = View.GONE
+                        }
+
+                        if (page.currentPage == 1) {
+                            tvPreviousPage.visibility = View.GONE
+                        } else {
+                            tvPreviousPage.visibility = View.VISIBLE
+                        }
+
+                        tvNextPage.setOnClickListener {
+                            getAnime(animeName, page.currentPage + 1)
+                        }
+                        tvPreviousPage.setOnClickListener {
+                            getAnime(animeName, page.currentPage - 1)
+                        }
+                    }
+                }
+            }
         }
 
         binding.apply {
@@ -50,7 +78,8 @@ class AnimeListActivity : AppCompatActivity() {
             svAnime.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (!query.isNullOrEmpty()) {
-                        viewModel.getAnime(query)
+                        querySearch = query
+                        viewModel.getAnime(querySearch)
                     } else {
                         viewModel.getAnime(randomAnime)
                     }

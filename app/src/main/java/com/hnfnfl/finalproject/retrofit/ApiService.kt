@@ -9,6 +9,7 @@ interface ApiService {
     fun getAnime(
         @Query("q") name: String,
         @Query("limit") limit: Int? = null,
+        @Query("page") page: Int? = null,
         @Query("sfw") sfw: Boolean? = true,
     ): Call<AnimeResponse>
 
